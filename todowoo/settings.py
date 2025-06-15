@@ -73,11 +73,16 @@ WSGI_APPLICATION = 'todowoo.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+import os
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DATABASE_NAME', 'todowo_db'),
+        'USER': os.getenv('DATABASE_USER', 'todowo_user'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', 'todowo_password'),
+        'HOST': os.getenv('DATABASE_HOST', 'db'),
+        'PORT': os.getenv('DATABASE_PORT', '5432'),
     }
 }
 
